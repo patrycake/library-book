@@ -11,19 +11,34 @@
 </head>
 
 <body>
+    <h1>My Library</h1>
     <button id="new-book">New Book</button>
-    <div class="form-popup" id="book-form">
-        <form action="#" class="form-container">
-            <h1>New Book Information</h1>
+    <div class="form-popup" >
+        <form action="#" class="form-container" id="book-form">
+            <h2>New Book Information</h1>
 
-            <label for="title"><b>Book Title</b></label>
-            <input type="text" placeholder="Enter Book Title" name="book-title" required>
+            <div class="item">
+                <label for="title"><b>Book Title</b></label>
+                <input type="text" placeholder="Enter Book Title" name="book-title" required>
+            </div>
 
-            <label for="author"><b>Author</b></label>
-            <input type="text" placeholder="Enter Author Name" name="author" required>
+            <div class="item">
+                <label for="author"><b>Author</b></label>
+                <input type="text" placeholder="Enter Author Name" name="author" required>
+            </div>
 
-            <button type="submit" class="btn">Login</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            <div class="item">
+                <label for="page"><b>Page Number</b></label>
+                <input type="number" placeholder="Enter Page Number" name="page" min="1" required>
+            </div>
+
+            <div class="item">
+                <label for="read"><b>Read</b></label>
+                <input type="checkbox" name="read">
+            </div>
+
+            <button type="submit" class="btn">Add Book</button>
+            <button type="button" class="btn" id="close-form">Close</button>
         </form>
     </div>
 </body>
