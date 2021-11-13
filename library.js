@@ -10,6 +10,9 @@ addBookButton.addEventListener("click", function(){
 closeFrom.addEventListener("click", function(){
     bookForm.style.display = "none";
 })
+
+bookForm.addEventListener("submit", addBookToLibrary, false);
+
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -20,8 +23,21 @@ function Book(title, author, pages, read) {
     }
 }
 
-function addBookToLibrary() {
+function addBookToLibrary(event) {
+    event.preventDefault();
     //users input
-    userBook = new Book(userTitle, userAuthor, userPages, userRead);
+    userBook = new Book(
+        bookForm.elements['book-title'].value,
+        bookForm.elements['author'].value,
+        bookForm.elements['page'].value,
+        bookForm.elements['read'].checked
+        )
     myLibrary.push(userBook)
+    console.log(JSON.parse(JSON.stringify(myLibrary)));  
+    bookForm.style.display = "none"; 
+    displayBooks();
+}
+
+function displayBooks(){
+
 }
