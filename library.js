@@ -2,12 +2,13 @@ let myLibrary = [];
 var addBookButton = document.getElementById("new-book");
 var bookForm = document.getElementById("book-form");
 var closeFrom = document.getElementById("close-form");
+var libraryDisplayDOM = document.getElementById("library-display")
 
-addBookButton.addEventListener("click", function(){
+addBookButton.addEventListener("click", function () {
     bookForm.style.display = "block";
 })
 
-closeFrom.addEventListener("click", function(){
+closeFrom.addEventListener("click", function () {
     bookForm.style.display = "none";
 })
 
@@ -31,13 +32,24 @@ function addBookToLibrary(event) {
         bookForm.elements['author'].value,
         bookForm.elements['page'].value,
         bookForm.elements['read'].checked
-        )
+    )
     myLibrary.push(userBook)
-    console.log(JSON.parse(JSON.stringify(myLibrary)));  
-    bookForm.style.display = "none"; 
-    displayBooks();
+    console.log(JSON.parse(JSON.stringify(myLibrary)));
+    bookForm.style.display = "none";
+    displayLibrary(userBook);
 }
 
-function displayBooks(){
+function displayLibrary(userBook) {
+    bookDiv = document.createElement("div");
+    bookTitle = document.createElement("h2");
+    bookInfo = document.createElement("p");
 
+    bookDiv.classList.add("card")
+    bookTitle.innerText = userBook.title;
+    bookInfo.innerText = `Author: ${userBook.author}, 
+        Page Number: ${userBook.pages}, 
+        Read: ${userBook.read}`;
+    bookDiv.appendChild(bookTitle);
+    bookDiv.appendChild(bookInfo);
+    libraryDisplayDOM.appendChild(bookDiv)
 }

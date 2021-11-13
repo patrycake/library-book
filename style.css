@@ -6,3 +6,7 @@ form {
     gap: 30px;
     display:none;
 }
+
+.card {
+    background-color:blueviolet
+}
