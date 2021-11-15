@@ -1,23 +1,25 @@
 let myLibrary = [];
 
-var addBookButton = document.getElementById("new-book");
+var openBookForm = document.getElementById("new-book");
 var bookForm = document.getElementById("book-form");
-var closeFrom = document.getElementById("close-form");
+var closeBookForm = document.getElementById("close-form");
 var libraryDisplayDOM = document.getElementById("library-display");
 var readStatusButtons = document.getElementsByClassName("read-status-button");
 var removeBookButtons = document.getElementsByClassName("remove-button")
 
 Array.from(readStatusButtons).forEach(butt => {
     butt.addEventListener("click", () => {
-        readStatus = myLibrary[butt.id.length].read;
-        readStatus ? myLibrary[butt.id.length].read = false : myLibrary[butt.id.length].read = true;
+        //use id to identify book
+        //update book object
+        //remove old gui
+        //createBookDisplay(myLibrary[readStatusButton.id])
     })
 })
-addBookButton.addEventListener("click", () => {
+openBookForm.addEventListener("click", () => {
     bookForm.style.display = "block";
 })
 
-closeFrom.addEventListener("click", () => {
+closeBookForm.addEventListener("click", () => {
     bookForm.style.display = "none";
 })
 
@@ -46,10 +48,10 @@ function addBookToLibrary(event) {
     myLibrary.push(userBook)
     console.log(JSON.parse(JSON.stringify(myLibrary)));
     bookForm.style.display = "none";
-    displayLibrary(userBook);
+    createBookDisplay(userBook);
 }
 
-function displayLibrary(userBook) {
+function createBookDisplay(userBook) {
     let bookDiv = document.createElement("div");
     let bookTitle = document.createElement("h2");
     let bookInfo = document.createElement("p");
@@ -73,3 +75,8 @@ function displayLibrary(userBook) {
     bookDiv.appendChild(removeButton)
     libraryDisplayDOM.appendChild(bookDiv)
 }
+
+// page opens create book gui if there are books in array
+    // if library.lenth != 0
+        //loop through myLibrary
+            //createBookDisplay(myLibrary[counter])
