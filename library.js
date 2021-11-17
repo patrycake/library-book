@@ -1,19 +1,29 @@
 let myLibrary = [];
 
 var openBookForm = document.getElementById("new-book");
-var bookForm = document.getElementById("book-form");
+var bookForm = document.getElementById("form-popup");
 var closeBookForm = document.getElementById("close-form");
 var libraryDisplayDOM = document.getElementById("library-display");
 var readStatusButtons = document.getElementsByClassName("read-status-button");
 var removeBookButtons = document.getElementsByClassName("remove-button")
 
 openBookForm.addEventListener("click", () => {
+    document.getElementById("form-modal-background-overlay").classList.add("overlay")
+    
     bookForm.style.display = "block";
 })
 
 closeBookForm.addEventListener("click", () => {
+    document.getElementById("form-modal-background-overlay").classList.remove("overlay")
     bookForm.style.display = "none";
 })
+
+// When the user clicks anywhere outside of the form, close it
+window.onclick = function(event) {
+    if (event.target == bookForm) {
+      bookForm.style.display = "none";
+    }
+  }
 
 bookForm.addEventListener("submit", addBookToLibrary, false);
 

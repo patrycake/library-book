@@ -11,10 +11,12 @@
 </head>
 
 <body>
+    <div id="form-modal-background-overlay">
     <h1>My Library</h1>
     <button id="new-book">New Book</button>
-    <div class="form-popup">
+    <div id="form-popup">
         <form action="" class="form-container" id="book-form">
+            <div id="items">
             <h2>New Book Information</h1>
                 <div class="item">
                     <label for="title"><b>Book Title</b></label>
@@ -34,9 +36,11 @@
                 </div>
                 <button type="submit" class="btn-form" onsubmit="addBookToLibrary">Add Book</button>
                 <button type="button" class="btn-form" id="close-form">Close</button>
+            </div>
         </form>
     </div>
     <div id="library-display"></div>
+</div>
 </body>
 
 </html>
