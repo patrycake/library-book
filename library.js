@@ -7,14 +7,6 @@ var libraryDisplayDOM = document.getElementById("library-display");
 var readStatusButtons = document.getElementsByClassName("read-status-button");
 var removeBookButtons = document.getElementsByClassName("remove-button")
 
-Array.from(readStatusButtons).forEach(butt => {
-    butt.addEventListener("click", () => {
-        //use id to identify book
-        //update book object
-        //remove old gui
-        //createBookDisplay(myLibrary[readStatusButton.id])
-    })
-})
 openBookForm.addEventListener("click", () => {
     bookForm.style.display = "block";
 })
@@ -51,32 +43,56 @@ function addBookToLibrary(event) {
     createBookDisplay(userBook);
 }
 
+function readStatusListener() {
+    myLibrary.forEach(book => {
+        console.log(book.title + " " + this.id)
+        //use id to identify book
+        console.log((this.id).substring(4))
+        if (book.title.includes((this.id).substring(5))) {
+            console.log(book.title + " " + this.id)
+            //update book object
+            book.read ? book.read = false : book.read = true;
+            console.log(book.read)
+            //update gui
+            document.getElementById(`book-read-${book.title}`).innerText = `Read: ${book.read}`;
+        }
+    })
+}
+
 function createBookDisplay(userBook) {
     let bookDiv = document.createElement("div");
     let bookTitle = document.createElement("h2");
     let bookInfo = document.createElement("p");
+    let bookRead = document.createElement("p");
     let removeButton = document.createElement("button");
     let readButton = document.createElement("button")
 
     bookDiv.classList.add("card")
     bookTitle.innerText = userBook.title;
     bookInfo.innerText = `Author: ${userBook.author}, 
-        Page Number: ${userBook.pages}, 
-        Read: ${userBook.read}`;
+        Page Number: ${userBook.pages}`
+    bookRead.innerHTML = `Read: ${userBook.read}`;
     readButton.innerText = `${userBook.read ? "Not Read" : "Read"}`
     removeButton.innerText = "Remove Book";
+
     readButton.classList.add("read-status-button")
     removeButton.classList.add("remove-button")
-    readButton.id = `read-${myLibrary.length}`;
+
+    bookDiv.id = `book-info-${userBook.title}`;
+    readButton.id = `read-${userBook.title}`;
+    bookRead.id = `book-read-${userBook.title}`;
+
+    readButton.addEventListener("click", readStatusListener)
 
     bookDiv.appendChild(bookTitle);
     bookDiv.appendChild(bookInfo);
+    bookDiv.appendChild(bookRead)
     bookDiv.appendChild(readButton);
     bookDiv.appendChild(removeButton)
     libraryDisplayDOM.appendChild(bookDiv)
 }
 
 // page opens create book gui if there are books in array
-    // if library.lenth != 0
-        //loop through myLibrary
-            //createBookDisplay(myLibrary[counter])
+// if library.lenth != 0
+//loop through myLibrary
+//createBookDisplay(myLibrary[counter])
