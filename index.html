@@ -9,41 +9,44 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@500&family=Montagu+Slab:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@500&family=Montagu+Slab:wght@600&display=swap"
+        rel="stylesheet">
     <title>Library</title>
 </head>
 
 <body>
-    <div id="form-modal-background-overlay">
-        <h1>My Library</h1>
-        <button id="new-book">New Book</button>
-        
-        <div id="library-display"></div>
-    </div>
-    <div id="form-popup">
-        <form action="" class="form-container" id="book-form">
-            <div id="items">
-                <h2>New Book Information</h1>
-                    <div class="item">
-                        <label for="title"><b>Book Title</b></label>
-                        <input type="text" placeholder="Enter Book Title" name="book-title" required>
-                    </div>
-                    <div class="item">
-                        <label for="author"><b>Author</b></label>
-                        <input type="text" placeholder="Enter Author Name" name="author" required>
-                    </div>
-                    <div class="item">
-                        <label for="page"><b>Page Number</b></label>
-                        <input type="number" placeholder="Enter Page Number" name="page" min="1" required>
-                    </div>
-                    <div class="item">
-                        <label for="read"><b>Read</b></label>
-                        <input type="checkbox" name="read">
-                    </div>
+
+    <h1>My Library</h1>
+    <button id="new-book">New Book</button>
+
+    <div id="library-display"></div>
+    <div class="form-modal-background-overlay">
+        <div id="form-popup">
+            <h2>New Book Information</h1>
+                <form action="" class="form-container" id="book-form">
+                    <!-- <div id="items"> -->
+
+                    <!-- <div class="item"> -->
+                    <label for="title"><b>Book Title</b></label>
+                    <input type="text" placeholder="Enter Book Title" name="book-title" required>
+                    <!-- </div> -->
+                    <!-- <div class="item"> -->
+                    <label for="author"><b>Author</b></label>
+                    <input type="text" placeholder="Enter Author Name" name="author" required>
+                    <!-- </div> -->
+                    <!-- <div class="item"> -->
+                    <label for="page"><b>Page Number</b></label>
+                    <input type="number" placeholder="Enter Page Number" name="page" min="1" required>
+                    <!-- </div> -->
+                    <!-- <div class="item"> -->
+                    <label for="read"><b>Read</b></label>
+                    <input class="checkbox" type="checkbox" name="read">
+                    <!-- </div> -->
                     <button type="submit" class="btn-form" onsubmit="addBookToLibrary">Add Book</button>
                     <button type="button" class="btn-form" id="close-form">Close</button>
-            </div>
-        </form>
+                    <!-- </div> -->
+                </form>
+        </div>
     </div>
 </body>
 

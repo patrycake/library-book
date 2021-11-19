@@ -1,29 +1,31 @@
 let myLibrary = [];
 
 var openBookForm = document.getElementById("new-book");
-var bookForm = document.getElementById("form-popup");
+var bookForm = document.getElementById("book-form");
+var formPopup = document.getElementById("form-popup")
 var closeBookForm = document.getElementById("close-form");
 var libraryDisplayDOM = document.getElementById("library-display");
 var readStatusButtons = document.getElementsByClassName("read-status-button");
 var removeBookButtons = document.getElementsByClassName("remove-button")
 
 openBookForm.addEventListener("click", () => {
-    document.getElementById("form-modal-background-overlay").classList.add("overlay")
-    
-    bookForm.style.display = "block";
+    document.querySelector(".form-modal-background-overlay").classList.add("form-active")
+    // formPopup.style.display = "block";
 })
 
 closeBookForm.addEventListener("click", () => {
-    document.getElementById("form-modal-background-overlay").classList.remove("overlay")
-    bookForm.style.display = "none";
+    document.querySelector(".form-modal-background-overlay").classList.remove("form-active")
+    // formPopup.style.display = "none";
 })
 
 // When the user clicks anywhere outside of the form, close it
-window.onclick = function(event) {
-    if (event.target == bookForm) {
-      bookForm.style.display = "none";
+window.onclick = function (event) {
+    if (event.target == formPopup) {
+        document.querySelector(".form-modal-background-overlay").classList.remove("form-active")
+        // formPopup.style.display = "none";
+
     }
-  }
+}
 
 bookForm.addEventListener("submit", addBookToLibrary, false);
 
@@ -40,6 +42,8 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary(event) {
     event.preventDefault();
+    document.querySelector(".form-modal-background-overlay").classList.remove("form-active")
+    formPopup.style.display = "none";
     //users input
     userBook = new Book(
         bookForm.elements['book-title'].value,
@@ -49,7 +53,6 @@ function addBookToLibrary(event) {
     )
     myLibrary.push(userBook)
     console.log(JSON.parse(JSON.stringify(myLibrary)));
-    bookForm.style.display = "none";
     createBookDisplay(userBook);
 }
 
@@ -71,53 +74,53 @@ function readStatusListener() {
 
 function removeBookListener() {
     myLibrary.forEach(book => {
-            console.log(book.title + " " + this.id)
-            //use id to identify book
-            console.log((this.id).substring(7))
-            if (book.title.includes((this.id).substring(7))) {
-                myLibrary.splice(myLibrary.indexOf(book), 1);
-                console.log(myLibrary);
-                document.getElementById(`book-info-${book.title}`).remove()
-            }
-        })
-    }
+        console.log(book.title + " " + this.id)
+        //use id to identify book
+        console.log((this.id).substring(7))
+        if (book.title.includes((this.id).substring(7))) {
+            myLibrary.splice(myLibrary.indexOf(book), 1);
+            console.log(myLibrary);
+            document.getElementById(`book-info-${book.title}`).remove()
+        }
+    })
+}
 
-    function createBookDisplay(userBook) {
-        let bookDiv = document.createElement("div");
-        let bookTitle = document.createElement("h2");
-        let bookInfo = document.createElement("p");
-        let bookRead = document.createElement("p");
-        let removeButton = document.createElement("button");
-        let readButton = document.createElement("button")
+function createBookDisplay(userBook) {
+    let bookDiv = document.createElement("div");
+    let bookTitle = document.createElement("h2");
+    let bookInfo = document.createElement("p");
+    let bookRead = document.createElement("p");
+    let removeButton = document.createElement("button");
+    let readButton = document.createElement("button")
 
-        bookDiv.classList.add("card")
-        bookTitle.innerText = userBook.title;
-        bookInfo.innerText = `Author: ${userBook.author}, 
+    bookDiv.classList.add("card")
+    bookTitle.innerText = userBook.title;
+    bookInfo.innerText = `Author: ${userBook.author}, 
         Page Number: ${userBook.pages}`
-        bookRead.innerHTML = `Read: ${userBook.read}`;
-        readButton.innerText = `${userBook.read ? "Not Read" : "Read"}`
-        removeButton.innerText = "Remove Book";
+    bookRead.innerHTML = `Read: ${userBook.read}`;
+    readButton.innerText = `${userBook.read ? "Not Read" : "Read"}`
+    removeButton.innerText = "Remove Book";
 
-        readButton.classList.add("read-status-button")
-        removeButton.classList.add("remove-button")
+    readButton.classList.add("read-status-button")
+    removeButton.classList.add("remove-button")
 
-        bookDiv.id = `book-info-${userBook.title}`;
-        readButton.id = `read-${userBook.title}`;
-        bookRead.id = `book-read-${userBook.title}`;
-        removeButton.id = `remove-${userBook.title}`
+    bookDiv.id = `book-info-${userBook.title}`;
+    readButton.id = `read-${userBook.title}`;
+    bookRead.id = `book-read-${userBook.title}`;
+    removeButton.id = `remove-${userBook.title}`
 
-        readButton.addEventListener("click", readStatusListener)
-        removeButton.addEventListener("click", removeBookListener)
+    readButton.addEventListener("click", readStatusListener)
+    removeButton.addEventListener("click", removeBookListener)
 
-        bookDiv.appendChild(bookTitle);
-        bookDiv.appendChild(bookInfo);
-        bookDiv.appendChild(bookRead)
-        bookDiv.appendChild(readButton);
-        bookDiv.appendChild(removeButton)
-        libraryDisplayDOM.appendChild(bookDiv)
-    }
+    bookDiv.appendChild(bookTitle);
+    bookDiv.appendChild(bookInfo);
+    bookDiv.appendChild(bookRead)
+    bookDiv.appendChild(readButton);
+    bookDiv.appendChild(removeButton)
+    libraryDisplayDOM.appendChild(bookDiv)
+}
 
-    // page opens create book gui if there are books in array
-    // if library.lenth != 0
-    //loop through myLibrary
-    //createBookDisplay(myLibrary[counter])
+// page opens create book gui if there are books in array
+// if library.lenth != 0
+//loop through myLibrary
+//createBookDisplay(myLibrary[counter])
