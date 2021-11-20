@@ -43,7 +43,6 @@ function Book(title, author, pages, read) {
 function addBookToLibrary(event) {
     event.preventDefault();
     document.querySelector(".form-modal-background-overlay").classList.remove("form-active")
-    formPopup.style.display = "none";
     //users input
     userBook = new Book(
         bookForm.elements['book-title'].value,
