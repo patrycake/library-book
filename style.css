@@ -26,6 +26,18 @@ h2 {
     color: #485447;
 }
 
+button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #809F97;
+    background-color: #B7CFD0;
+    margin: 0 auto;
+}
+
+button:hover {
+    background-color: #809F97;
+}
+
 #new-book {
     background-color: #B7CFD0;
     padding: 20px 30px;
@@ -100,5 +112,23 @@ input {
     border-radius: 8px;
     flex: 0 1 auto;
     width: 300px;
+    display: flex;
+    flex-direction: column;
+}
 
+.card p {
+    margin: 0px 30px 0px 30px;
+}
+
+.card div {
+    margin: auto 0 20px 0;
+    text-align: center;
+}
+
+.card button {
+    margin: 0 15px;
+}
+
+.card .book-read{
+    margin-bottom: 20px;
 }
